@@ -12,6 +12,7 @@ public class TrainConsistManagementApp {
         train.add("Cargo");
         train.add("Guard");
 
+
         // Attempt to add duplicate bogie
         train.add("Sleeper"); // duplicate, will be ignored
 
