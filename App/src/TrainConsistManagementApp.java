@@ -1,4 +1,3 @@
-// UC7: Bogie.java
 // Represents a passenger bogie with a name and seating capacity.
 
 public class TrainConsistManagementApp {
