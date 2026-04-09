@@ -1,23 +1,30 @@
-import java.util.LinkedHashSet;
+// UC7: Bogie.java
+// Represents a passenger bogie with a name and seating capacity.
 
 public class TrainConsistManagementApp {
-    public static void main(String[] args) {
 
-        // Create LinkedHashSet for train formation
-        LinkedHashSet<String> train = new LinkedHashSet<>();
+    private String name;
+    private int capacity;
 
-        // Add bogies
-        train.add("Engine");
-        train.add("Sleeper");
-        train.add("Cargo");
-        train.add("Guard");
+    // Constructor
+    public Bogie(String name, int capacity) {
+        this.name = name;
+        this.capacity = capacity;
+    }
 
+    // Getter for name
+    public String getName() {
+        return name;
+    }
 
-        // Attempt to add duplicate bogie
-        train.add("Sleeper"); // duplicate, will be ignored
+    // Getter for capacity
+    public int getCapacity() {
+        return capacity;
+    }
 
-        // Display final formation
-        System.out.println("Final Train Formation (No duplicates, Insertion Order Preserved):");
-        System.out.println(train);
+    // Display bogie details
+    @Override
+    public String toString() {
+        return "Bogie [Name: " + name + ", Capacity: " + capacity + " seats]";
     }
 }
