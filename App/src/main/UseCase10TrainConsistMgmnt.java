@@ -2,34 +2,32 @@ package main;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * =====================================================
- * MAIN CLASS - UseCase9TrainConsistMgmnt
+ * MAIN CLASS - UseCase10TrainConsistMgmnt
  * =====================================================
  *
- * Use Case 9: Group Bogies by Type (Collectors.groupingBy)
+ * Use Case 10: Count Total Seats in Train (reduce)
  *
  * Description:
- * This class groups passenger bogies based on their type
- * using Java Stream API and Collectors.groupingBy().
+ * This class aggregates seating capacities of all bogies
+ * into a single total value using Java Stream reduce().
  *
  * At this stage, the application:
  * - Creates a list of bogies
  * - Converts list into stream
- * - Applies groupingBy collector
- * - Stores result in a Map
- * - Displays grouped bogie structure
+ * - Extracts capacity using map()
+ * - Aggregates total using reduce()
+ * - Displays total seating capacity
  *
  * @author Developer
- * @version 9.0
+ * @version 10.0
  */
 
-public class UseCase9TrainConsistMgmnt {
+public class UseCase10TrainConsistMgmnt {
 
-    // Reusing Bogie model from UC8
+    // Reusing Bogie model from UC9
     static class Bogie {
         String name;
         int capacity;
@@ -48,7 +46,7 @@ public class UseCase9TrainConsistMgmnt {
     public static void main(String[] args) {
 
         System.out.println("==============================================");
-        System.out.println(" UC9 - Group Bogies by Type                  ");
+        System.out.println(" UC10 - Count Total Seats in Train (reduce)  ");
         System.out.println("==============================================\n");
 
         // Create list of passenger bogies
@@ -56,8 +54,6 @@ public class UseCase9TrainConsistMgmnt {
         bogies.add(new Bogie("Sleeper", 72));
         bogies.add(new Bogie("AC Chair", 56));
         bogies.add(new Bogie("First Class", 24));
-        bogies.add(new Bogie("Sleeper", 68));
-        bogies.add(new Bogie("AC Chair", 60));
         bogies.add(new Bogie("General", 90));
 
         // Display all bogies
@@ -66,19 +62,14 @@ public class UseCase9TrainConsistMgmnt {
             System.out.println(b);
         }
 
-        // Group bogies by type using Collectors.groupingBy()
-        Map<String, List<Bogie>> groupedBogies = bogies.stream()
-                .collect(Collectors.groupingBy(b -> b.name));
+        // Aggregate total seating capacity using map() and reduce()
+        int totalSeats = bogies.stream()
+                .map(b -> b.capacity)
+                .reduce(0, Integer::sum);
 
-        // Display grouped bogies
-        System.out.println("\nGrouped Bogies by Type:");
-        for (Map.Entry<String, List<Bogie>> entry : groupedBogies.entrySet()) {
-            System.out.println("\nType: " + entry.getKey());
-            for (Bogie b : entry.getValue()) {
-                System.out.println("  " + b);
-            }
-        }
+        // Display total seating capacity
+        System.out.println("\nTotal Seating Capacity: " + totalSeats);
 
-        System.out.println("\nUC9 grouping completed...");
+        System.out.println("\nUC10 aggregation completed...");
     }
 }
